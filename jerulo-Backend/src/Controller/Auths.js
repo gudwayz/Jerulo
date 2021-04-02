@@ -2,10 +2,13 @@ const Jwt = require('jsonwebtoken');
 const User = require('../Models/user')
 const env = require('dotenv');
 
+
 env.config();
 
 
+
 exports.signup = (req, res) => {
+
     User.findOne({ email: req.body.email })
         .exec((error, user) => {
             if (user) return res.status(400).json({

@@ -3,14 +3,11 @@ const router = express.Router();
 
 const { signup, signin } = require('../../Controller/Admin/Auths')
 
-router.post('/admin/signin', signin);
+const { requestValidateSignup, requestValidateSignin, isRequestValidated } = require('../../validators/auths');
 
-router.post('/admin/signup', signup);
+router.post('/signin', requestValidateSignin, isRequestValidated, signin);
 
-
-
-
-
+router.post('/signup', requestValidateSignup, isRequestValidated, signup);
 
 
 
